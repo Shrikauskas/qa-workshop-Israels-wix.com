@@ -76,10 +76,23 @@ describe('App', () => {
       expect(screen.getByTestId('todo-list')).toBeInTheDocument()
     })
 
+    const expectedTitles: Record<number, string> = {
+      1: 'Choose and enjoy something',
+      2: 'Find out who makes tasks easy and official',
+      3: 'Avoid getting less forgiveness',
+      4: 'Handle timing and delays',
+      5: 'Work through the hard stuff to gain what you need',
+      6: 'Figure out who has reason for all pleasures',
+      7: 'Speed up what follows because of the cause',
+      8: 'Gain more than what you started with',
+      9: 'Deal with annoying insights',
+      10: 'Accept that reason and grief come from greater things',
+    }
+
     for (let i = 1; i <= 10; i++) {
       const title = screen.getByTestId(`todo-title-${i}`)
       expect(title).toBeInTheDocument()
-      expect(title).toHaveTextContent(`Todo item ${i}`)
+      expect(title).toHaveTextContent(expectedTitles[i])
     }
   })
 })

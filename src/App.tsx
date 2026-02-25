@@ -9,7 +9,7 @@ interface Todo {
 }
 
 const translations: Record<number, string> = {
-  1: 'Choose or enjoy something',
+  1: 'Choose and enjoy something',
   2: 'Find out who makes tasks easy and official',
   3: 'Avoid getting less forgiveness',
   4: 'Handle timing and delays',

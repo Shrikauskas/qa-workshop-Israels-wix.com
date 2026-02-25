@@ -1,0 +1,37 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-slim
+    env:
+      COREPACK_ENABLE_AUTO_PIN: '0'
+      YARN_NPM_REGISTRY_SERVER: https://registry.npmjs.org
+      YARN_ENABLE_HARDENED_MODE: '0'
+      npm_config_registry: https://registry.npmjs.org
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 23
+
+      - name: Enable Corepack
+        run: corepack enable && corepack install
+
+      - name: Install dependencies
+        run: rm -f yarn.lock && yarn install --no-immutable
+
+      - name: Run unit tests
+        run: yarn test:unit
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run e2e tests
+        run: yarn test:e2e
