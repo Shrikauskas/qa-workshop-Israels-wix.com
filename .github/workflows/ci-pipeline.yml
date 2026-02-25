@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-slim
     env:
       npm_config_registry: https://registry.npmjs.org/
+      COREPACK_ENABLE_AUTO_PIN: '0'
 
     steps:
       - uses: actions/checkout@v4
@@ -19,10 +20,10 @@ jobs:
           node-version: 23
 
       - name: Enable Corepack
-        run: corepack enable
+        run: corepack enable && corepack install
 
       - name: Install dependencies
-        run: yarn install --immutable --ignore-engines
+        run: yarn install --immutable
 
       - name: Run unit tests
         run: yarn test:unit
