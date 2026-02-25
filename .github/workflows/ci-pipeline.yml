@@ -12,6 +12,7 @@ jobs:
       COREPACK_ENABLE_AUTO_PIN: '0'
       YARN_NPM_REGISTRY_SERVER: https://registry.npmjs.org
       YARN_ENABLE_HARDENED_MODE: '0'
+      npm_config_registry: https://registry.npmjs.org
 
     steps:
       - uses: actions/checkout@v4
